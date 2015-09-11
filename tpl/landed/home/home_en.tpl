@@ -12,8 +12,8 @@
                     <li>
                         <a href="">Dev Companies I worked</a>
                         <ul>
-                            <li><a href="#">Vista Software</a></li>
-                            <li><a href="#">E-Core</a></li>
+                            <li><a href="#two" class="scrolly">Vista Software</a></li>
+                            <li><a href="#three" class="scrolly">E-Core</a></li>
                         </ul>
                     </li>
                     <li>

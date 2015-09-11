@@ -12,8 +12,8 @@
                     <li>
                         <a href="">Empresas que Trabalhei</a>
                         <ul>
-                            <li><a href="#">Vista Software</a></li>
-                            <li><a href="#">E-Core</a></li>
+                            <li><a href="#two" class="scrolly">Vista Software</a></li>
+                            <li><a href="#three" class="scrolly">E-Core</a></li>
                         </ul>
                     </li>
                     <li>
@@ -114,7 +114,7 @@
                 <strong>IRIS CRM</strong>, um CRM para Merchant Services em New York. O projeto tem como base um <strong>Framework PHP Proprietário</strong>
                 que não possui documentação, exigindo um <strong>grau de aprendizado e inspeção</strong> altos. Mas talvez o elemento mais valioso que eu
                 pude tirar na E-Core é me inspirar nos excelentes líderes que tive a oportunidade de trabalhar.
-                Você pode saber sobre a <strong>E-Core</strong> at <a href="http://e-core.com/">e-core.com</a></p>
+                Você pode saber sobre a <strong>E-Core</strong> em <a href="http://e-core.com/">e-core.com</a></p>
         </header>
         <p></p>
         <ul class="actions">
