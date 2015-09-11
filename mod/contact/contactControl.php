@@ -53,4 +53,13 @@ class contactControl extends Control {
 
     }
 
+    private function getLnMessage() {
+
+        $message = 'I will reach you out soon. Thank you!';
+        $ln = Session::get('ln');
+        !in_array($ln, array('en', 'pt')) || $message = 'Estarei lhe retornando em breve. Obrigado!';
+
+        return $message;
+    }
+
 }

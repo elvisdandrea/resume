@@ -14,7 +14,7 @@ class Debugger {
      * @param   string      $element    - Where to render it
      * @return  string
      */
-    public static function debug($mixed, $element = 'html') {
+    public static function debug($mixed, $element = '#content') {
 
         //TODO: RESTful debug
 
@@ -29,7 +29,7 @@ class Debugger {
         $result = $view->render();
 
         !Core::isAjax() ||
-            $result = Html::ReplaceHtml($result, $element);
+        $result = Html::ReplaceHtml($result, $element);
 
         return $result;
     }

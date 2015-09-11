@@ -135,7 +135,7 @@ class Html {
      */
     public static function refresh() {
 
-        echo 'window.location.href = "' . Core::getServerInfo('HTTP_REFERER') . '"';
+        echo 'window.location.href = "' . Core::getServerInfo('HTTP_REFERER') . '";';
         exit;
     }
 

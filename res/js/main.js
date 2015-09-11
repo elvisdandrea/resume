@@ -36,12 +36,14 @@ Main.prototype = {
                 $(this).attr('href').indexOf('http://')  === 0 ||
                 $(this).attr('href').indexOf('https://') === 0 ) return false;
 
-            var action = $(this).attr('href');
+            var action    = $(this).attr('href');
+            var changeUrl = $(this).attr('changeurl') != undefined;
+
             e.preventDefault();
             $('#loading').show();
             Html.Get(action, function(r){
                 eval(r);
-                window.history.pushState(undefined, '', action);
+                if (changeUrl) window.history.pushState(undefined, '', action);
                 return false;
             });
         });
@@ -69,7 +71,7 @@ Main.prototype = {
             if ($(this).attr('action') == undefined) return false;
 
             data = [];
-            $(this).find('input[type="hidden"][name],input[type][name]:not("[type=password]"),select[name],textarea[name]').each(function(e){
+            $(this).find('input[type="hidden"][name],input[type][name]:not("[type=password]"):not("[type=radio]"),select[name],textarea[name]').each(function(e){
                 var value = $(this).val();
                 if ($(this).attr('data-id') != undefined) value = $(this).attr('data-id');
                 if ($(this).attr('format') == 'currency') value = $(this).maskMoney('unmasked')[0];
@@ -77,6 +79,10 @@ Main.prototype = {
             });
             $(this).find('input[type="password"]').each(function(){
                 data.push($(this).attr('name')+'='+md5($(this).val()));
+            });
+
+            $(this).find('input[type="radio"]:checked').each(function(){
+                data.push($(this).attr('name')+'='+$(this).val());
             });
 
             $(this).find('img[type="upload"]').each(function(){
@@ -87,17 +93,18 @@ Main.prototype = {
             if ($(this).attr('method') != undefined) {
                 method = $(this).attr('method');
             }
-
+            var changeUrl = $(this).attr('changeurl');
             if (method == 'post') {
                 Html.Post($(this).attr('action'), data.join('&'), function(r) {
                     eval(r);
+                    if (changeUrl) window.history.pushState(undefined, '', changeUrl);
                     return false;
                 });
             } else if (method == 'get') {
                 var url = $(this).attr('action') + '?' + data.join('&');
                 Html.Get(url, function(r){
                     eval(r);
-                    $('#loading').hide();
+                    if (changeUrl) window.history.pushState(undefined, '', changeUrl);
                     return false;
                 });
             }
@@ -184,10 +191,15 @@ Main.prototype = {
      */
     interactions : function() {
 
-        window.onpopstate = function(e){
-            window.location.href = e.target.window.location.href;
-            return false;
-        }
+        var iOS = ( navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false );
+
+        if (!iOS)
+            window.onpopstate = function(e) {
+                Html.Get(e.target.window.location.href, function(r) {
+                    eval(r);
+                    return false;
+                });
+            }
 
     },
 
@@ -203,9 +215,10 @@ Main.prototype = {
             var target = event.target;
             if ($(target).is(avoidElement)) return false;
         }
+
         Html.Get(action, function(r){
             eval(r);
-            window.history.pushState(undefined, '', action);
+            if (changeUrl) window.history.pushState(undefined, '', action);
             return false;
         });
     }

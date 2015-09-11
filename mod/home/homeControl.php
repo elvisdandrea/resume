@@ -77,6 +77,8 @@ class homeControl extends Control {
         #$this->view('')->lol();                    // Example of Fatal Error Handling
 
 
+        $this->view()->setVariable('lnTemplate', $this->getLnTemplate());
+
         echo $this->view()->render();
 
         echo Core::getController()->view()->injectJSFiles();
@@ -149,6 +151,21 @@ class homeControl extends Control {
             $this->getPost('db')
         );
         $this->commitReplace('Created!', '#alert');
+    }
+
+    public function translate() {
+
+        $ln = $this->getQueryString('ln');
+        Session::set('ln', $ln);
+    }
+
+    private function getLnTemplate() {
+
+        $lnTemplate = 'home_en';
+        $ln = Session::get('ln');
+        !in_array($ln, array('en', 'pt')) || $lnTemplate = 'home_' . $ln;
+
+        return $lnTemplate;
     }
 
 }
