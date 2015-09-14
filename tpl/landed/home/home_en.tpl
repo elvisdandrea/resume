@@ -163,7 +163,7 @@
                 <section class="4u$ 6u$(medium) 12u$(xsmall)">
                     <span class="icon alt major fa-line-chart"></span>
                     <h3>SCRUM Agile Methodology</h3>
-                    <p>Classes at <a href="http://www.datainfo.inf.br/">DataInfo</a>, I'm certified to use SCRUM Agile Methodology.</p>
+                    <p>Classes at <a href="http://www.datainfo.inf.br/">DataInfo</a>, I'm certified SCRUM Agile Methodology Specialist.</p>
                 </section>
             </div>
         </div>
